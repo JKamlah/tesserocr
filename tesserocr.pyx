@@ -1287,7 +1287,7 @@ cdef class PyTessBaseAPI:
 
     def InitFull(self, path=_DEFAULT_PATH, lang=_DEFAULT_LANG,
                  OcrEngineMode oem=OEM_DEFAULT, list configs=[],
-                 dict variables={}, bool set_only_non_debug_params=False):
+                 dict variables={}, bool set_only_non_debug_params=False, PageSegMode psm=PSM_AUTO):
         """Initialize the API with the given parameters (advanced).
 
         It is entirely safe (and eventually will be efficient too) to call
@@ -1349,7 +1349,7 @@ cdef class PyTessBaseAPI:
         with nogil:
             try:
                 self._init_api(cpath, clang, oem, configs_, configs_size, &vars_vec, &vars_vals,
-                               set_only_non_debug_params, PSM_AUTO)
+                               set_only_non_debug_params, psm)
             finally:
                 free(configs_)
 
